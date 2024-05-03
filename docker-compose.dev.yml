@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  bhakti-buana-app-dev:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: bhakti-buana-app-dev
+    image: bhakti-buana-app-dev
+    ports:
+      - 3005:80
+    env_file:
+      - .env.dev
