@@ -19,6 +19,10 @@ export default defineConfig({
         sourceMap: false,
         additionalData(source: string) {
           let prepends = "";
+          prepends += `@import "./src/assets/styles/colors.scss";`;
+          prepends += `@import "./src/assets/styles/fonts.scss";`;
+          prepends += `@import "./src/assets/styles/screen.scss";`;
+          prepends += `@import "./src/assets/styles/spacer.scss";`;
           prepends += source;
 
           return prepends;
