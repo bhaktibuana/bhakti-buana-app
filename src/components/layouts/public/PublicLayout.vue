@@ -1,6 +1,6 @@
 <template>
   <div class="public-layout-wrapper">
-    <div v-show="true">
+    <div v-show="!isPageLoading">
       <top-nav-bar
         @scroll-to-section-id="scrollToSection"
         @on-hamburger-click="handleHamburgerClick"
@@ -14,12 +14,14 @@
       <slot></slot>
     </div>
 
-    <loading-screen />
+    <loading-screen v-if="isPageLoading" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, provide, ref } from "vue";
+import { computed, onMounted, provide, ref } from "vue";
+
+import { useHomePageStore } from "@/store";
 
 import TopNavBar from "@/components/layouts/navigation/topNavBar/TopNavBar.vue";
 import SideNavBar from "@/components/layouts/navigation/sideNavBar/SideNavBar.vue";
@@ -27,7 +29,17 @@ import LoadingScreen from "@/components/layouts/public/home/LoadingScreen.vue";
 
 import { scrollTopTop } from "@/helpers/functions/scrollToTop";
 
+const homePageStore = useHomePageStore();
+
 const showSidebar = ref<boolean>(false);
+
+const isPageLoading = computed<boolean>(() => {
+  if (homePageStore.getTotalQueries === 0) {
+    return true;
+  } else if (homePageStore.getCurrentQueries < homePageStore.getTotalQueries) {
+    return true;
+  } else return false;
+});
 
 provide("hamburgerState", { showSidebar });
 

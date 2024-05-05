@@ -33,11 +33,15 @@
 <script setup lang="ts">
 import { onMounted, reactive } from "vue";
 
+import { useHomePageStore } from "@/store";
+
 import AboutSection from "@/components/pages/public/home/AboutSection.vue";
 
 import { API_PUBLIC } from "@/apis/public";
 
 import { I_AboutData } from "@/pages/public/home/types";
+
+const homePageStore = useHomePageStore();
 
 const aboutData = reactive<I_AboutData>({
   loading: false,
@@ -60,6 +64,7 @@ const fetchAbout = async (): Promise<void> => {
     const response = await API_PUBLIC.showAbout();
     aboutData.data = response.data.data;
     aboutData.querySuccess = true;
+    homePageStore.setCurrentQueries(homePageStore.getCurrentQueries + 1);
   } catch (error) {
     aboutData.querySuccess = false;
   } finally {
@@ -69,6 +74,7 @@ const fetchAbout = async (): Promise<void> => {
 };
 
 onMounted(async () => {
+  homePageStore.setTotalQueries(1);
   await fetchAbout();
 });
 </script>

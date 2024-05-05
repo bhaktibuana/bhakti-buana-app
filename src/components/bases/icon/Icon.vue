@@ -52,6 +52,8 @@
 </template>
 
 <script setup lang="ts">
+import { PropType } from "vue";
+
 import {
   IconBrandBinance,
   IconUserFilled,
@@ -65,9 +67,11 @@ import {
   IconArticleFilled,
 } from "@tabler/icons-vue";
 
+import { T_IconName } from "@/components/bases/icon/types";
+
 defineProps({
   name: {
-    type: String,
+    type: String as PropType<T_IconName>,
     required: true,
   },
   size: {

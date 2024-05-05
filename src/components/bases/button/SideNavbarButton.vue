@@ -9,7 +9,11 @@
 </template>
 
 <script setup lang="ts">
+import { PropType } from "vue";
+
 import BaseIcon from "@/components/bases/icon/Icon.vue";
+
+import { T_IconName } from "@/components/bases/icon/types";
 
 defineProps({
   id: {
@@ -25,7 +29,7 @@ defineProps({
     default: "",
   },
   icon: {
-    type: String,
+    type: String as PropType<T_IconName>,
     default: "",
   },
 });

@@ -1,4 +1,12 @@
-export const navMenuItems = [
+import { T_IconName } from "@/components/bases/icon/types";
+
+interface I_NavMenuItems {
+  id: string;
+  label: string;
+  icon: T_IconName;
+}
+
+export const navMenuItems: I_NavMenuItems[] = [
   {
     id: "home",
     label: "Home",
