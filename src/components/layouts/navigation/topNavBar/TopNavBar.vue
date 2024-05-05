@@ -97,6 +97,7 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   align-items: center;
   transition: 0.3s all ease-in-out;
+  z-index: 50;
 
   @include breakpoint(xl, max) {
     padding: $size-16 calc(-1 * $size-512 + 50vw);

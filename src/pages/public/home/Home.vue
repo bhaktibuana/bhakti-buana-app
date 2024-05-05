@@ -3,9 +3,7 @@
     <p>Home</p>
   </div>
 
-  <div class="section-wrapper" id="about">
-    <p>About</p>
-  </div>
+  <about-section :data="aboutData.data" />
 
   <div class="section-wrapper" id="skills">
     <p>Skills</p>
@@ -31,6 +29,46 @@
     <p>Contact</p>
   </div>
 </template>
+
+<script setup lang="ts">
+import { onMounted, reactive } from "vue";
+
+import AboutSection from "@/components/pages/public/home/AboutSection.vue";
+
+import { API_PUBLIC } from "@/apis/public";
+
+import { I_AboutData } from "@/pages/public/home/types";
+
+const aboutData = reactive<I_AboutData>({
+  loading: false,
+  finished: false,
+  querySuccess: false,
+  data: {
+    location: {} as I_AboutData["data"]["location"],
+    resume: {} as I_AboutData["data"]["resume"],
+  } as I_AboutData["data"],
+});
+
+const fetchAbout = async (): Promise<void> => {
+  aboutData.loading = true;
+  aboutData.finished = false;
+
+  try {
+    const response = await API_PUBLIC.showAbout();
+    aboutData.data = response.data.data;
+    aboutData.querySuccess = true;
+  } catch (error) {
+    aboutData.querySuccess = false;
+  } finally {
+    aboutData.loading = false;
+    aboutData.finished = true;
+  }
+};
+
+onMounted(async () => {
+  await fetchAbout();
+});
+</script>
 
 <style scoped lang="scss">
 .section-wrapper {
