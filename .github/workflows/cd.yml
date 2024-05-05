@@ -33,10 +33,10 @@ jobs:
           script: |
             cd ~/app/bhakti-buana/bhakti-buana-app-dev
             git pull origin dev
-            rm -f .env.dev
-            echo "VITE_BHAKTI_BUANA_API_URL=${{ secrets.DEV_VITE_BHAKTI_BUANA_API_URL }}" >> .env.dev
-            docker-compose -f docker-compose.dev.yml build --no-cache
-            docker-compose -f docker-compose.dev.yml up -d --force-recreate
+            rm -f .env
+            echo "VITE_BHAKTI_BUANA_API_URL=${{ secrets.DEV_VITE_BHAKTI_BUANA_API_URL }}" >> .env
+            docker-compose -f docker-compose.dev.yml build --no-cache && docker-compose -f docker-compose.dev.yml up -d --force-recreate
+            docker system prune -a -f
 
       - name: Prod Deployment
         if: ${{ (github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/staging')) || (github.event_name == 'pull_request' && (github.base_ref == 'main' || github.base_ref == 'staging')) }}
@@ -51,7 +51,7 @@ jobs:
           script: |
             cd ~/app/bhakti-buana/bhakti-buana-app
             git pull origin main
-            rm -f .env.prod
-            echo "VITE_BHAKTI_BUANA_API_URL=${{ secrets.PROD_VITE_BHAKTI_BUANA_API_URL }}" >> .env.prod
-            docker-compose -f docker-compose.prod.yml build --no-cache
-            docker-compose -f docker-compose.prod.yml up -d --force-recreate
+            rm -f .env
+            echo "VITE_BHAKTI_BUANA_API_URL=${{ secrets.PROD_VITE_BHAKTI_BUANA_API_URL }}" >> .env
+            docker-compose -f docker-compose.prod.yml build --no-cache && docker-compose -f docker-compose.prod.yml up -d --force-recreate
+            docker system prune -a -f
