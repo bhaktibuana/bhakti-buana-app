@@ -19,6 +19,36 @@
     :size="size"
     :stroke-width="stroke"
   />
+  <IconHomeFilled
+    v-if="name === 'home-filled'"
+    :size="size"
+    :stroke-width="stroke"
+  />
+  <IconGhostFilled
+    v-if="name === 'ghost-filled'"
+    :size="size"
+    :stroke-width="stroke"
+  />
+  <IconCodeCircle2Filled
+    v-if="name === 'code-circle-2-filled'"
+    :size="size"
+    :stroke-width="stroke"
+  />
+  <IconAppsFilled
+    v-if="name === 'apps-filled'"
+    :size="size"
+    :stroke-width="stroke"
+  />
+  <IconStack2Filled
+    v-if="name === 'stack-2-filled'"
+    :size="size"
+    :stroke-width="stroke"
+  />
+  <IconArticleFilled
+    v-if="name === 'article-filled'"
+    :size="size"
+    :stroke-width="stroke"
+  />
 </template>
 
 <script setup lang="ts">
@@ -27,6 +57,12 @@ import {
   IconUserFilled,
   IconMailFilled,
   IconMapPinFilled,
+  IconHomeFilled,
+  IconGhostFilled,
+  IconCodeCircle2Filled,
+  IconAppsFilled,
+  IconStack2Filled,
+  IconArticleFilled,
 } from "@tabler/icons-vue";
 
 defineProps({

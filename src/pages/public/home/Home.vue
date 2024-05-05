@@ -45,7 +45,10 @@ const aboutData = reactive<I_AboutData>({
   querySuccess: false,
   data: {
     location: {} as I_AboutData["data"]["location"],
-    resume: {} as I_AboutData["data"]["resume"],
+    resume: {
+      url: "",
+    } as I_AboutData["data"]["resume"],
+    photo: "",
   } as I_AboutData["data"],
 });
 

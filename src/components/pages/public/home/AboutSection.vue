@@ -1,6 +1,6 @@
 <template>
   <section-layout id="about">
-    <section-title first-label="About" second-label="Me" icon="user-filled" />
+    <section-title first-label="About" second-label="Me" icon="ghost-filled" />
 
     <div class="section-body">
       <div class="photo-wrapper">

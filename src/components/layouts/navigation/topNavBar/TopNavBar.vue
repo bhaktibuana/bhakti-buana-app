@@ -22,21 +22,29 @@
         @click="handleScrollToSectionId(item.id)"
       />
     </div>
+
+    <div class="hamburger-wrapper">
+      <base-hamburger-button @click="handleHamburgerClick" />
+    </div>
   </nav>
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from "vue";
+import { inject, onBeforeUnmount, onMounted, ref } from "vue";
 
 import BaseTopNavButton from "@/components/bases/button/TopNavButton.vue";
 import BaseIcon from "@/components/bases/icon/Icon.vue";
+import BaseHamburgerButton from "@/components/bases/button/HamburgerButton.vue";
 
 import { scrollTopTop } from "@/helpers/functions/scrollToTop";
 import { navMenuItems } from "@/helpers/constants/navMenuItems";
 
-const emit = defineEmits(["scrollToSectionId"]);
+const emit = defineEmits(["scrollToSectionId", "onHamburgerClick"]);
 
 const thresholdScroll = 500;
+
+const hamburgerState: { showSidebar: { value: boolean } } | undefined =
+  inject("hamburgerState");
 
 const backgroundColor = ref<string>("rgba(255, 255, 255 0)");
 const shadow = ref<string>("none");
@@ -74,6 +82,10 @@ const handleScroll = () => {
 
 const handleScrollToSectionId = (sectionId: string) => {
   emit("scrollToSectionId", sectionId);
+};
+
+const handleHamburgerClick = (): void => {
+  emit("onHamburgerClick", !hamburgerState?.showSidebar.value);
 };
 
 onMounted(() => {
@@ -144,6 +156,15 @@ onBeforeUnmount(() => {
 
   @include breakpoint(md, max) {
     display: none;
+  }
+}
+
+.hamburger-wrapper {
+  width: auto;
+  display: none;
+
+  @include breakpoint(md, max) {
+    display: block;
   }
 }
 </style>

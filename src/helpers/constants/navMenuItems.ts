@@ -2,36 +2,36 @@ export const navMenuItems = [
   {
     id: "home",
     label: "Home",
-    icon: "icon",
+    icon: "home-filled",
   },
   {
     id: "about",
     label: "About",
-    icon: "icon",
+    icon: "ghost-filled",
   },
   {
     id: "skills",
     label: "Skills",
-    icon: "icon",
+    icon: "code-circle-2-filled",
   },
   {
     id: "experience",
     label: "Experience",
-    icon: "icon",
+    icon: "apps-filled",
   },
   {
     id: "portfolio",
     label: "Portfolio",
-    icon: "icon",
+    icon: "stack-2-filled",
   },
   {
     id: "blogs",
     label: "Blogs",
-    icon: "icon",
+    icon: "article-filled",
   },
   {
     id: "contact",
     label: "Contact",
-    icon: "icon",
+    icon: "mail-filled",
   },
 ];
