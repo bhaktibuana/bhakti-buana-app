@@ -5,9 +5,7 @@
 
   <about-section :data="aboutData.data" />
 
-  <div class="section-wrapper" id="skills">
-    <p>Skills</p>
-  </div>
+  <skills-section />
 
   <div class="section-wrapper" id="experience">
     <p>Experience</p>
@@ -36,6 +34,7 @@ import { onMounted, reactive } from "vue";
 import { useHomePageStore } from "@/store";
 
 import AboutSection from "@/components/pages/public/home/AboutSection.vue";
+import SkillsSection from "@/components/pages/public/home/SkillsSection.vue";
 
 import { API_PUBLIC } from "@/apis/public";
 
